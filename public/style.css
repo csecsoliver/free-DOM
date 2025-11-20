@@ -1,0 +1,15 @@
+#scroll-container {
+  width: calc(100% - 22px);
+  height: calc(100vh - 150px);
+  overflow: scroll;
+  margin: 10px;
+  border: 1px solid grey;
+}
+
+#large-container {
+  width: 3000px;
+  height: 3000px;
+  overflow: hidden;
+}
+#stage-container {
+}

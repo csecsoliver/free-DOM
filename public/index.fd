@@ -1,7 +1,3 @@
 <body w="3000" h="3000">
-    <div x="0" y="0" w="10" h="10" bg="gray">
-        <h1>cool</h1>
-        <p>hello world</p>
-        <button>Button</button>
-    </div>
+    <h1 x="0" y="0" w="100" h="100" bg="red">asd</h1> 
 </body>
