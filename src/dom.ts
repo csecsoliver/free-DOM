@@ -72,7 +72,8 @@ export class DOM {
     const href = element.getAttribute('href') || '';
     const text = element.textContent || "";
     const draggable = element.getAttribute('draggable') === 'true';
-
+    const scaleX = parseFloat((element.getAttribute('scale') || '1,1').split(',')[0]);
+    const scaleY = parseFloat((element.getAttribute('scale') || '1,1').split(',')[1]);
     const shape = new Konva.Shape(
       {
         sceneFunc: (shapes[element.nodeName.toLowerCase()] as any )|| function (context: Context, shape: Shape) {
@@ -94,7 +95,8 @@ export class DOM {
         text: text,
         src: src,
         href: href,
-
+        scaleX: scaleX,
+        scaleY: scaleY,
       }
     );
     

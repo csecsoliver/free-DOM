@@ -1,3 +1,8 @@
 <body w="600" h="600">
-    <area shape="poly" coords="0,0,40,0,40,20,20,20,20,80,0,80,0,0" fill="blue" draggable="true" href="" alt="">
-</body>
+    <area shape="poly" scale="20,20" x="1" coords="0,0,2,0,2,1,1,1,1,4,0,4,0,0" fill="blue" draggable="true" href="" alt="">
+    <area shape="poly" scale="20,20" coords="1,0,2,0,2,1,3,1,3,2,2,2,2,3,1,3,1,2,0,2,0,1,1,1,1,0" draggable="true" fill="gray" href="" alt="">
+    <area shape="poly" scale="20,20" coords="0,0,3,0,3,3,2,3,2,1,0,1,0,0" fill="lightblue" draggable="true" href="" alt="">
+    <area shape="poly" scale="20,20" coords="0,0,2,0,2,1,3,1,3,3,2,3,2,2,1,2,1,1,0,1,0,0" fill="pink" draggable="true" href="" alt="">
+    <area shape="poly" scale="20,20" coords="0,0,3,0,3,2,1,2,1,1,0,1" fill="red" draggable="true" href="" alt="">
+    <area shape="poly" scale="20,20" coords="" href="" alt="">
+</body> 
