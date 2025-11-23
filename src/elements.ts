@@ -137,7 +137,6 @@ function area(context: Context, shape: Shape) {
   const html_shape = (shape as any).attrs.html_shape || "rect";
   const html_coords = (shape as any).attrs.html_coords || "0,0,0,0";
   const draggable = (shape as any).attrs.draggable || false;
-  console.log(`${html_coords}`);
   const coords = html_coords.split(',').map((c: string) => parseInt(c.trim()));
   context.beginPath();
   switch (html_shape) {
