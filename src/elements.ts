@@ -13,6 +13,7 @@ export const shapes: { [key: string]: Function } = {
 function title(context: Context, shape: Shape) {
   const text = (shape as any).attrs.text || "No Text";
   const width = (shape as any).attrs.width || 0;
+  const draggable = (shape as any).attrs.draggable || false;
   const height = (shape as any).attrs.height || 0;
   const fill = (shape as any).attrs.fill || "black";
   context.beginPath();
@@ -21,13 +22,13 @@ function title(context: Context, shape: Shape) {
   context.fillText(text, 0, height);
   context.closePath();
   context.fillStrokeShape(shape);
-  shape.hitFunc((hitContext: Context, shape: Shape) => {
+  if (draggable){shape.hitFunc((hitContext: Context, shape: Shape) => {
     hitContext.beginPath();
     const w = text.length * height * 0.6;
     hitContext.rect(0, 0, w, height);
     hitContext.closePath();
     hitContext.fillStrokeShape(shape);
-  });
+  });}
 }
 function paragraph(context: Context, shape: Shape) {
   const text = (shape as any).attrs.text || "No Text";
@@ -35,6 +36,7 @@ function paragraph(context: Context, shape: Shape) {
   const height = (shape as any).attrs.height || 0;
   const fill = (shape as any).attrs.fill || "black";
   const cpl = Math.floor(width / (height * 0.6));
+  const draggable = (shape as any).attrs.draggable || false;
   const lines = [];
   const wordArray = text.split(" ");
   let currentLine = "";
@@ -57,17 +59,18 @@ function paragraph(context: Context, shape: Shape) {
     countedheight += height;
   }
   context.closePath();
-  context.fillStrokeShape(shape);shape.hitFunc((hitContext: Context, shape: Shape) => {
+  if (draggable){context.fillStrokeShape(shape);shape.hitFunc((hitContext: Context, shape: Shape) => {
     hitContext.beginPath();
     const w = width;
     hitContext.rect(0, 0, w, countedheight);
     hitContext.closePath();
     hitContext.fillStrokeShape(shape);
-  });
+  });}
 }
 function image(context: Context, shape: Shape) {
   const src = (shape as any).attrs.src || "";
 
+  const draggable = (shape as any).attrs.draggable || false;
   let img = (shape as any).imageObj;
 
   if (!img) {
@@ -94,12 +97,12 @@ function image(context: Context, shape: Shape) {
     }
     context.drawImage(img, 0, 0, width, height);
   }
-  shape.hitFunc((hitContext: Context, shape: Shape) => {
+  if (draggable){shape.hitFunc((hitContext: Context, shape: Shape) => {
     hitContext.beginPath();
     hitContext.rect(0, 0, width, height);
     hitContext.closePath();
     hitContext.fillStrokeShape(shape);
-  });
+  });}
 }
 function link(context: Context, shape: Shape) {
   const text = (shape as any).attrs.text || "No Text";
@@ -112,7 +115,7 @@ function link(context: Context, shape: Shape) {
   context.fillText(text, 0, height);
   context.closePath();
   context.fillStrokeShape(shape);
-  shape.on("click", () => {
+  shape.on("click tap", () => {
     location.href = window.location.href.split('?')[0]+"?url="+href;
   });
   shape.on("mouseover", () => {
@@ -134,6 +137,7 @@ function area(context: Context, shape: Shape) {
   const href = (shape as any).attrs.href || "";
   const html_shape = (shape as any).attrs.html_shape || "rect";
   const html_coords = (shape as any).attrs.html_coords || "0,0,0,0";
+  const draggable = (shape as any).attrs.draggable || false;
   console.log(`${html_coords}`);
   const coords = html_coords.split(',').map((c: string) => parseInt(c.trim()));
   context.beginPath();
@@ -161,8 +165,18 @@ function area(context: Context, shape: Shape) {
   }
   context.closePath();
   context.fillStrokeShape(shape);
-  if (!href) return;
-  shape.on("click", () => {
+  if (!href) {
+    if(!draggable){
+      shape.hitFunc((hitContext: Context, shape: Shape) => {
+        hitContext.beginPath();
+        hitContext.closePath();
+        hitContext.fillStrokeShape(shape);
+      });
+    }
+    
+    return;
+  };
+  shape.on("click tap", () => {
     location.href = window.location.href.split('?')[0]+"?url="+href;
   });
   shape.on("mouseover", () => {
@@ -177,31 +191,35 @@ function div(context: Context, shape: Shape) {
   const width = (shape as any).attrs.width || 0;
   const height = (shape as any).attrs.height || 0;
   const fill = (shape as any).attrs.fill || "transparent";
+  const draggable = (shape as any).attrs.draggable || false;
   context.beginPath();
   context.fillStyle = fill;
   context.rect(0, 0, width, height);
   context.closePath();
   context.fillStrokeShape(shape);
+  if (!draggable){
+    shape.hitFunc((hitContext: Context, shape: Shape) => {
+      hitContext.beginPath();
+      hitContext.closePath();
+      hitContext.fillStrokeShape(shape);
+    });
+  }
 }
 function hr(context: Context, shape: Shape) {
   const width = (shape as any).attrs.width || 100;
   const height = (shape as any).attrs.height || 5;
   const fill = (shape as any).attrs.fill || "black";
+  const draggable = (shape as any).attrs.draggable || false;
   context.beginPath();
   context.fillStyle = fill;
   context.rect(0, 0, width, height);
   context.closePath();
   context.fillStrokeShape(shape);    
-}
-function ul(context: Context, shape: Shape) {
-  const text = (shape as any).attrs.text || "No Text";
-  const width = (shape as any).attrs.width || 0;
-  const height = (shape as any).attrs.height || 0;
-  const fill = (shape as any).attrs.fill || "black";
-  context.beginPath();
-  context.font = `${height}px Courier New`;
-  context.fillStyle = fill;
-  context.fillText("• " + text, 0, height);
-  context.closePath();
-  context.fillStrokeShape(shape);
+  if (!draggable){
+    shape.hitFunc((hitContext: Context, shape: Shape) => {
+      hitContext.beginPath();
+      hitContext.closePath();
+      hitContext.fillStrokeShape(shape);
+    });
+  }
 }

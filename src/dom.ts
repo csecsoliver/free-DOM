@@ -18,9 +18,15 @@ export class DOM {
         ) as types.freeDOMDocument;
         this.stage = new Konva.Stage({
           container: "stage-container",
-          width: window.innerWidth + 200 * 2,
-          height: window.innerHeight + 200 * 2,
+          // width: window.innerWidth + 200 * 2,
+          // height: window.innerHeight + 200 * 2,
+          width: parseInt(this.doc!.body.getAttribute('w')!),
+          height: parseInt(this.doc!.body.getAttribute('h')!),
         });
+        document.getElementById("large-container")!.style.width =
+          this.stage.width() + "px";
+        document.getElementById("large-container")!.style.height =
+          this.stage.height() + "px";
         this.layer = new Konva.Layer();
         this.stage.add(this.layer);
         this.render();
@@ -95,8 +101,8 @@ export class DOM {
     return shape;
   }
   public repositionStage = () => {
-    const dx = document.getElementById("scroll-container")!.scrollLeft - 200;
-    const dy = document.getElementById("scroll-container")!.scrollTop - 200;
+    const dx = document.getElementById("scroll-container")!.scrollLeft;
+    const dy = document.getElementById("scroll-container")!.scrollTop;
     this.stage!.container().style.transform =
       "translate(" + dx + "px, " + dy + "px)";
     this.stage!.x(-dx);

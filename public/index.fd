@@ -1,4 +1,4 @@
-<body w="3000" h="3000">
+<body w="3000" h="400">
     <h1 x="20" y="0" w="100" h="100" fill="red">DDD||asd</h1> 
     <p x="20" y="140" w="2900" h="50" fill="purple">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus magni atque, saepe quam quibusdam, esse suscipit quidem eius tenetur, officia corporis tempore. Consequuntur dignissimos consequatur quia harum? Odit, deserunt mollitia.</p>
     <img src="Image_created_with_a_mobile_phone.png" y="200" x="200" w="200" alt="">

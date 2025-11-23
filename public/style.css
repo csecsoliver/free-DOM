@@ -7,8 +7,8 @@
 }
 
 #large-container {
-  width: 3000px;
-  height: 3000px;
+  /* width: 3000px;
+  height: 3000px; */
   overflow: hidden;
 }
 #stage-container {
