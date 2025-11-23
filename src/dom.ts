@@ -58,6 +58,8 @@ export class DOM {
     const w = parseInt(element.getAttribute('w') || '0');
     const h = parseInt(element.getAttribute('h') || '0');
     const bg = element.getAttribute('bg') || '';
+    const src = element.getAttribute('src') || '';
+    const href = element.getAttribute('href') || '';
     const text = element.textContent || "";
 
     const shape = new Konva.Shape(
@@ -74,6 +76,8 @@ export class DOM {
         width: w,
         height: h,
         text: text,
+        src: src,
+        href: href,
       }
     );
     
