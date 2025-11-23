@@ -63,7 +63,7 @@ export class DOM {
     const y = parseInt(element.getAttribute('y') || '0');
     const w = parseInt(element.getAttribute('w') || '0');
     const h = parseInt(element.getAttribute('h') || '0');
-    const strokew = parseInt(element.getAttribute('strokew') || '0');
+    const strokew = parseFloat(element.getAttribute('strokew') || '0');
     const fill = element.getAttribute('fill') || '';
     const stroke = element.getAttribute('stroke') || '';
     const html_shape = element.getAttribute('shape') || '';
@@ -74,6 +74,7 @@ export class DOM {
     const draggable = element.getAttribute('draggable') === 'true';
     const scaleX = parseFloat((element.getAttribute('scale') || '1,1').split(',')[0]);
     const scaleY = parseFloat((element.getAttribute('scale') || '1,1').split(',')[1]);
+    const contain = element.getAttribute('contain') === 'true';
     const shape = new Konva.Shape(
       {
         sceneFunc: (shapes[element.nodeName.toLowerCase()] as any )|| function (context: Context, shape: Shape) {
@@ -99,7 +100,18 @@ export class DOM {
         scaleY: scaleY,
       }
     );
-    
+    shape.on('dragmove', () => {
+      shape.x(Math.round((shape.absolutePosition().x) / scaleX) * scaleX);
+      shape.y(Math.round((shape.absolutePosition().y) / scaleY) * scaleY);
+      if (contain) {
+        if (shape.x() < 0) shape.x(0);
+        if (shape.y() < 0) shape.y(0);
+        if (shape.x() + (shape.width() * shape.scaleX() + 10) > this.stage!.width())
+          shape.x(this.stage!.width() - (shape.width() * shape.scaleX() + 10));
+        if (shape.y() + (shape.height() * shape.scaleY() + 10) > this.stage!.height())
+          shape.y(this.stage!.height() - (shape.height() * shape.scaleY() + 10));
+      }
+    });
     return shape;
   }
   public repositionStage = () => {

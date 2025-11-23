@@ -12,7 +12,6 @@ export const shapes: { [key: string]: Function } = {
 };
 function title(context: Context, shape: Shape) {
   const text = (shape as any).attrs.text || "No Text";
-  const width = (shape as any).attrs.width || 0;
   const draggable = (shape as any).attrs.draggable || false;
   const height = (shape as any).attrs.height || 0;
   const fill = (shape as any).attrs.fill || "black";
