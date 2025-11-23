@@ -57,10 +57,15 @@ export class DOM {
     const y = parseInt(element.getAttribute('y') || '0');
     const w = parseInt(element.getAttribute('w') || '0');
     const h = parseInt(element.getAttribute('h') || '0');
+    const strokew = parseInt(element.getAttribute('strokew') || '0');
     const fill = element.getAttribute('fill') || '';
+    const stroke = element.getAttribute('stroke') || '';
+    const html_shape = element.getAttribute('shape') || '';
+    const html_coords = element.getAttribute('coords') || '';
     const src = element.getAttribute('src') || '';
     const href = element.getAttribute('href') || '';
     const text = element.textContent || "";
+    const draggable = element.getAttribute('draggable') === 'true';
 
     const shape = new Konva.Shape(
       {
@@ -71,6 +76,11 @@ export class DOM {
           context.fillStrokeShape(shape);
         },
         fill: fill,
+        stroke: stroke,
+        strokeWidth: strokew,
+        draggable: draggable,
+        html_shape: html_shape,
+        html_coords: html_coords,
         x: x,
         y: y,
         width: w,
@@ -78,6 +88,7 @@ export class DOM {
         text: text,
         src: src,
         href: href,
+
       }
     );
     
