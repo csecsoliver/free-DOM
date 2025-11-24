@@ -6,6 +6,7 @@ const searchParams = url.searchParams;
 const inputUrl = searchParams.get("url");
 if (inputUrl) {
   dom = new DOM(inputUrl);
+  console.log(dom);
   (document.getElementById("gotoinput") as HTMLInputElement).value = inputUrl;
 }
 document.getElementById("gotobutton")?.addEventListener("click", (e) => {
@@ -13,4 +14,5 @@ document.getElementById("gotobutton")?.addEventListener("click", (e) => {
   const input = (document.getElementById("gotoinput") as HTMLInputElement).value;
   dom = new DOM(input);
   
+  console.log(dom);
 });
