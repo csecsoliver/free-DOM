@@ -1,16 +1,16 @@
 <body w="600" h="600">
     <div x="40" y="200" scale="40,40" h="5" w="11" stroke="gray" strokew="0.05" fill="lightgray"></div>
 
-    <area shape="poly" contain="true" scale="40,40" coords="0,0,2,0,2,1,1,1,1,4,0,4,0,0" fill="blue" stroke="black" strokew="0.05" draggable="true" href="" alt="">
-    <area shape="poly" contain="true" scale="40,40" coords="1,0,2,0,2,1,3,1,3,2,2,2,2,3,1,3,1,2,0,2,0,1,1,1,1,0" draggable="true" fill="gray" stroke="black" strokew="0.05" href="" alt="">
-    <area shape="poly" contain="true" scale="40,40" coords="0,0,3,0,3,3,2,3,2,1,0,1,0,0" fill="lightblue" stroke="black" strokew="0.05" draggable="true" href="" alt="">
-    <area shape="poly" contain="true" scale="40,40" coords="0,0,2,0,2,1,3,1,3,3,2,3,2,2,1,2,1,1,0,1,0,0" fill="magenta" stroke="black" strokew="0.05" draggable="true" href="" alt="">
-    <area shape="poly" contain="true" scale="40,40" coords="0,0,3,0,3,2,1,2,1,1,0,1" fill="red" stroke="black" strokew="0.05" draggable="true" href="" alt="">
-    <area shape="poly" contain="true" scale="40,40" coords="0,0,1,0,1,1,3,1,3,2,0,2,0,0" fill="orange" stroke="black" strokew="0.05" draggable="true" href="" alt="">
-    <area shape="poly" contain="true" scale="40,40" coords="1,0,2,0,2,4,1,4,1,2,0,2,0,1,1,1,1,0" fill="pink" stroke="black" strokew="0.05" draggable="true" href="" alt="">
-    <area shape="poly" contain="true" scale="40,40" coords="0,0,2,0,2,2,0,2,0,0" fill="lightgreen" stroke="black" strokew="0.05" draggable="true" href="" alt="">
-    <area shape="poly" contain="true" scale="40,40" coords="0,0,1,0,1,1,2,1,2,4,1,4,1,2,0,2,0,0" fill="#0f0" stroke="black" strokew="0.05" draggable="true" href="" alt="">
-    <area shape="poly" contain="true" scale="40,40" coords="0,0,2,0,2,1,1,1,1,2,0,2,0,0" fill="white" stroke="black" strokew="0.05" draggable="true" href="" alt="">
-    <area shape="poly" contain="true" scale="40,40" coords="0,0,2,0,2,3,0,3,0,2,1,2,1,1,0,1,0,0" fill="yellow" stroke="black" strokew="0.05" draggable="true" href="" alt="">
-    <area shape="poly" contain="true" scale="40,40" coords="0,0,4,0,4,1,0,1,0,0" fill="purple" stroke="black" strokew="0.05" draggable="true" href="" alt="">
+    <area shape="poly" contain="true" scale="40,40" w="1" h="1" coords="0,0,2,0,2,1,1,1,1,4,0,4,0,0" fill="blue" stroke="black" strokew="0.05" draggable="true" href="" alt="">
+    <area shape="poly" contain="true" scale="40,40" w="1" h="1" coords="1,0,2,0,2,1,3,1,3,2,2,2,2,3,1,3,1,2,0,2,0,1,1,1,1,0" draggable="true" fill="gray" stroke="black" strokew="0.05" href="" alt="">
+    <area shape="poly" contain="true" scale="40,40" w="1" h="1" coords="0,0,3,0,3,3,2,3,2,1,0,1,0,0" fill="lightblue" stroke="black" strokew="0.05" draggable="true" href="" alt="">
+    <area shape="poly" contain="true" scale="40,40" w="1" h="1" coords="0,0,2,0,2,1,3,1,3,3,2,3,2,2,1,2,1,1,0,1,0,0" fill="magenta" stroke="black" strokew="0.05" draggable="true" href="" alt="">
+    <area shape="poly" contain="true" scale="40,40" w="1" h="1" coords="0,0,3,0,3,2,1,2,1,1,0,1" fill="red" stroke="black" strokew="0.05" draggable="true" href="" alt="">
+    <area shape="poly" contain="true" scale="40,40" w="1" h="1" coords="0,0,1,0,1,1,3,1,3,2,0,2,0,0" fill="orange" stroke="black" strokew="0.05" draggable="true" href="" alt="">
+    <area shape="poly" contain="true" scale="40,40" w="1" h="1" coords="1,0,2,0,2,4,1,4,1,2,0,2,0,1,1,1,1,0" fill="pink" stroke="black" strokew="0.05" draggable="true" href="" alt="">
+    <area shape="poly" contain="true" scale="40,40" w="1" h="1" coords="0,0,2,0,2,2,0,2,0,0" fill="lightgreen" stroke="black" strokew="0.05" draggable="true" href="" alt="">
+    <area shape="poly" contain="true" scale="40,40" w="1" h="1" coords="0,0,1,0,1,1,2,1,2,4,1,4,1,2,0,2,0,0" fill="#0f0" stroke="black" strokew="0.05" draggable="true" href="" alt="">
+    <area shape="poly" contain="true" scale="40,40" w="1" h="1" coords="0,0,2,0,2,1,1,1,1,2,0,2,0,0" fill="white" stroke="black" strokew="0.05" draggable="true" href="" alt="">
+    <area shape="poly" contain="true" scale="40,40" w="1" h="1" coords="0,0,2,0,2,3,0,3,0,2,1,2,1,1,0,1,0,0" fill="yellow" stroke="black" strokew="0.05" draggable="true" href="" alt="">
+    <area shape="poly" contain="true" scale="40,40" w="1" h="1" coords="0,0,4,0,4,1,0,1,0,0" fill="purple" stroke="black" strokew="0.05" draggable="true" href="" alt="">
 </body>

@@ -1,5 +1,5 @@
 <body w="3000" h="3000" fds="style.fds">
-    <a href="index.fd" h="20">Go back to first page</a>
+    <a href="index.fd" h="20" fill="blue" draggable="true" contain="true">Go back to first page</a>
     <area shape="rect" x="300" y="300" coords="0,0,200,200" fill="red" href="" alt="">
     <area shape="poly" coords="200,100,200,20,500,600" fill="orange" href="" alt="" stroke="black" strokew="2" draggable="true">
     <area shape="circle" x="316" y="310" coords="10,10,10" fill="blue" href="" alt="">

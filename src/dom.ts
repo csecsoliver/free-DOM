@@ -126,16 +126,15 @@ export class DOM {
     );
     shape.on('dragmove', () => {
       shape.x(Math.round((shape.x()) / scaleX) * scaleX);
-      shape.y(Math.round((shape.y()) / scaleY) * scaleY);
+      shape.y(Math.round((shape.y()) / scaleY) * scaleY);0
       if (contain) {
-        const rect = shape.getClientRect();
-        console.log(rect);
+          
         if (shape.x() < 0) shape.x(0);
         if (shape.y() < 0) shape.y(0);
-        if (shape.x() + (rect.width * shape.scaleX()) > this.stage!.width())
-          shape.x(this.stage!.width() - (rect.width * shape.scaleX()));
-        if (shape.y() + (rect.height * shape.scaleY()) > this.stage!.height())
-          shape.y(this.stage!.height() - (rect.height * shape.scaleY()));
+        if (shape.x() + (shape.width() * shape.scaleX()) > this.stage!.width())
+          shape.x(this.stage!.width() - (shape.width() * shape.scaleX()));
+        if (shape.y() + (shape.height() * shape.scaleY()) > this.stage!.height())
+          shape.y(this.stage!.height() - (shape.height() * shape.scaleY()));
       }
     });
     return shape;

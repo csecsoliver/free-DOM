@@ -13,7 +13,7 @@ export const shapes: { [key: string]: Function } = {
 function title(context: Context, shape: Shape) {
   const text = (shape as any).attrs.text || "No Text";
   const draggable = (shape as any).attrs.draggable || false;
-  const height = (shape as any).attrs.height || 0;
+  const height = (shape as any).attrs.height || 10;
   const fill = (shape as any).attrs.fill || "black";
   context.beginPath();
   context.font = `${height}px Courier New`;
@@ -32,7 +32,7 @@ function title(context: Context, shape: Shape) {
 function paragraph(context: Context, shape: Shape) {
   const text = (shape as any).attrs.text || "No Text";
   const width = (shape as any).attrs.width || 0;
-  const height = (shape as any).attrs.height || 0;
+  const height = (shape as any).attrs.height || 10;
   const fill = (shape as any).attrs.fill || "black";
   const cpl = Math.floor(width / (height * 0.6));
   const draggable = (shape as any).attrs.draggable || false;
@@ -105,12 +105,12 @@ function image(context: Context, shape: Shape) {
 }
 function link(context: Context, shape: Shape) {
   const text = (shape as any).attrs.text || "No Text";
-  const width = (shape as any).attrs.width || 0;
-  const height = (shape as any).attrs.height || 0;
+  const height = (shape as any).attrs.height || 10;
   const href = (shape as any).attrs.href || 0;
+  const fill = (shape as any).attrs.fill || 0;
   context.beginPath();
   context.font = `${height}px Courier New`;
-
+  context.fillStyle = fill;
   context.fillText(text, 0, height);
   context.closePath();
   context.fillStrokeShape(shape);
@@ -125,7 +125,7 @@ function link(context: Context, shape: Shape) {
   });
   shape.hitFunc((hitContext: Context, shape: Shape) => {
     hitContext.beginPath();
-    const w = width || text.length * height * 0.6;
+    const w = text.length * height * 0.6;
     hitContext.rect(0, 0, w, height);
     hitContext.closePath();
     hitContext.fillStrokeShape(shape);
