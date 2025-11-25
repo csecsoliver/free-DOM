@@ -15,20 +15,20 @@ export class DOM {
         const parser = new DOMParser();
         this.doc = parser.parseFromString(
           htmlString,
-          "text/html"
+          "text/html",
         ) as types.freeDOMDocument;
         this.stage = new Konva.Stage({
           container: "stage-container",
           // width: window.innerWidth + 200 * 2,
           // height: window.innerHeight + 200 * 2,
-          width: parseInt(this.doc!.body.getAttribute('w')!),
-          height: parseInt(this.doc!.body.getAttribute('h')!),
+          width: parseInt(this.doc!.body.getAttribute("w")!),
+          height: parseInt(this.doc!.body.getAttribute("h")!),
         });
-        if (this.doc!.body.getAttribute('fds')) {
-          fetch(this.doc!.body.getAttribute('fds')!)
+        if (this.doc!.body.getAttribute("fds")) {
+          fetch(this.doc!.body.getAttribute("fds")!)
             .then((response) => response.text())
             .then((rawfds) => {
-              this.fds = JSON.parse(rawfds || '{}') as types.freeDOMStyle;
+              this.fds = JSON.parse(rawfds || "{}") as types.freeDOMStyle;
             });
         }
         document.getElementById("large-container")!.style.width =
@@ -58,7 +58,7 @@ export class DOM {
     console.log(elements);
     elements.forEach((element) => {
       const konvaElement = this.createKonvaElement(
-        element as types.freeDOMElement
+        element as types.freeDOMElement,
       );
       console.log(konvaElement);
       this.layer!.add(konvaElement);
@@ -68,7 +68,9 @@ export class DOM {
   }
   private createKonvaElement(element: types.freeDOMElement): Konva.Shape {
     // fds specifiable attribues
-    const cascadedStyle = {...(this.fds?.[element.nodeName.toLowerCase()] || {})} as types.freeDOMStyleRule;
+    const cascadedStyle = {
+      ...(this.fds?.[element.nodeName.toLowerCase()] || {}),
+    } as types.freeDOMStyleRule;
     for (const i of element.classList) {
       const classStyle = this.fds?.[`.${i}`];
       if (classStyle) {
@@ -80,61 +82,71 @@ export class DOM {
       Object.assign(cascadedStyle, idStyle);
     }
 
-    const x = parseInt(element.getAttribute('x') ??( cascadedStyle.x ?? '0'));
-    const y = parseInt(element.getAttribute('y') ??( cascadedStyle.y ?? '0'));
-    const w = parseInt(element.getAttribute('w') ??( cascadedStyle.w ?? '0'));
-    const h = parseInt(element.getAttribute('h') ??( cascadedStyle.h ?? '0'));
-    const strokew = parseFloat(element.getAttribute('strokew') ??( cascadedStyle.strokew ?? '0'));
-    const fill = element.getAttribute('fill') ??( cascadedStyle.fill ?? '');
-    const stroke = element.getAttribute('stroke') ??( cascadedStyle.stroke ?? '');
-    const draggable = (element.getAttribute('draggable') ??( cascadedStyle.draggable?? 'false')) === 'true';
-    const scale = (element.getAttribute('scale') ??( cascadedStyle.scale ?? '1,1')).split(',')
+    const x = parseInt(element.getAttribute("x") ?? cascadedStyle.x ?? "0");
+    const y = parseInt(element.getAttribute("y") ?? cascadedStyle.y ?? "0");
+    const w = parseInt(element.getAttribute("w") ?? cascadedStyle.w ?? "0");
+    const h = parseInt(element.getAttribute("h") ?? cascadedStyle.h ?? "0");
+    const strokew = parseFloat(
+      element.getAttribute("strokew") ?? cascadedStyle.strokew ?? "0",
+    );
+    const fill = element.getAttribute("fill") ?? cascadedStyle.fill ?? "";
+    const stroke = element.getAttribute("stroke") ?? cascadedStyle.stroke ?? "";
+    const draggable =
+      (element.getAttribute("draggable") ??
+        cascadedStyle.draggable ??
+        "false") === "true";
+    const scale = (
+      element.getAttribute("scale") ??
+      cascadedStyle.scale ??
+      "1,1"
+    ).split(",");
     const scaleX = parseFloat(scale[0]);
     const scaleY = parseFloat(scale[1]);
-    const contain = (element.getAttribute('contain') ??( cascadedStyle.contain ?? 'false')) === 'true';
+    const contain =
+      (element.getAttribute("contain") ?? cascadedStyle.contain ?? "false") ===
+      "true";
 
     // non-fds specifiable attributes
-    const html_shape = element.getAttribute('shape') || '';
-    const html_coords = element.getAttribute('coords') || '';
-    const src = element.getAttribute('src') || '';
-    const href = element.getAttribute('href') || '';
+    const html_shape = element.getAttribute("shape") || "";
+    const html_coords = element.getAttribute("coords") || "";
+    const src = element.getAttribute("src") || "";
+    const href = element.getAttribute("href") || "";
     const text = element.textContent || "";
-    const shape = new Konva.Shape(
-      {
-        sceneFunc: (shapes[element.nodeName.toLowerCase()] as any) || function (context: Context, shape: Shape) {
+    const shape = new Konva.Shape({
+      sceneFunc:
+        (shapes[element.nodeName.toLowerCase()] as any) ||
+        function (context: Context, shape: Shape) {
           context.beginPath();
           context.rect(0, 0, w, h);
           context.closePath();
           context.fillStrokeShape(shape);
         },
-        fill: fill,
-        stroke: stroke,
-        strokeWidth: strokew,
-        draggable: draggable,
-        html_shape: html_shape,
-        html_coords: html_coords,
-        x: x,
-        y: y,
-        width: w,
-        height: h,
-        text: text,
-        src: src,
-        href: href,
-        scaleX: scaleX,
-        scaleY: scaleY,
-      }
-    );
-    shape.on('dragmove', () => {
-      shape.x(Math.round((shape.x()) / scaleX) * scaleX);
-      shape.y(Math.round((shape.y()) / scaleY) * scaleY);0
+      fill: fill,
+      stroke: stroke,
+      strokeWidth: strokew,
+      draggable: draggable,
+      html_shape: html_shape,
+      html_coords: html_coords,
+      x: x,
+      y: y,
+      width: w,
+      height: h,
+      text: text,
+      src: src,
+      href: href,
+      scaleX: scaleX,
+      scaleY: scaleY,
+    });
+    shape.on("dragmove", () => {
+      shape.x(Math.round(shape.x() / scaleX) * scaleX);
+      shape.y(Math.round(shape.y() / scaleY) * scaleY);
       if (contain) {
-          
         if (shape.x() < 0) shape.x(0);
         if (shape.y() < 0) shape.y(0);
-        if (shape.x() + (shape.width() * shape.scaleX()) > this.stage!.width())
-          shape.x(this.stage!.width() - (shape.width() * shape.scaleX()));
-        if (shape.y() + (shape.height() * shape.scaleY()) > this.stage!.height())
-          shape.y(this.stage!.height() - (shape.height() * shape.scaleY()));
+        if (shape.x() + shape.width() * shape.scaleX() > this.stage!.width())
+          shape.x(this.stage!.width() - shape.width() * shape.scaleX());
+        if (shape.y() + shape.height() * shape.scaleY() > this.stage!.height())
+          shape.y(this.stage!.height() - shape.height() * shape.scaleY());
       }
     });
     return shape;
